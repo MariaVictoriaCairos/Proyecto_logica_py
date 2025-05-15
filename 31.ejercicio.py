@@ -21,10 +21,7 @@ def Buscar_nombre (lista=None, nombre=None):
     if nombre in lista:
         print(f"El nombre '{nombre}' fue encontrado en la lista.")
     else:
-        raise ValueError(f"El nombre '{nombre}' no fue encontrado en la lista.")    
-    
-    
-    
+        raise ValueError(f"El nombre '{nombre}' no fue encontrado en la lista.")     
 try: 
     # Entrada de lista de nombre y nombre a buscar
     entrada = input("Introcuce una lista de nombre separados por comas :").strip()

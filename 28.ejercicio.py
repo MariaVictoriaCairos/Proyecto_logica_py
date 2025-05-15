@@ -10,12 +10,8 @@ def duplicado (lista=None):
     if lista is None:
         lista = []
     # Se inicializa un conjunto para almacenar los elementos vistos
-    # y se itera sobre la lista
     elementos_vistos = set() # Conjunto para almacenar elementos únicos
-    # Iterar sobre la lista
-    # y verificar si el elemento ya ha sido visto
-    # Si es así, se devuelve el elemento duplicado
-    # Si no se encuentra duplicado, se devuelve None
+    # Se itera sobre la lista
     for elemento in lista:
         if elemento in elementos_vistos:
             return elemento

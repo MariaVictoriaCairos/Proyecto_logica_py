@@ -9,8 +9,8 @@ if not numeros_usuario:
     print("La lista de numeros está vacia.")
 else:
     numeros_usuario = numeros_usuario.strip()                   # Se eliminan los espacios en blanco al inicio y al final de la cadena
-    val_numeros = numeros_usuario.split(",")                    # convierte el input en una lista
-    if all(numero.strip().isdigit() for numero in val_numeros): # Valida que son números
+    val_numeros = [x.strip() for x in numeros_usuario.split(",")] # convierte el input en una lista eliminando los espacios
+    if all(numero.isdigit() for numero in val_numeros): # Valida que son números
         numeros = map(int, numeros_usuario.split(","))          # Transforma el input en una lista que separa por la coma
         dobles = list(map(lambda x: x * 2, numeros))            # itera y los duplica
 

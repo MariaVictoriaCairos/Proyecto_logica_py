@@ -41,8 +41,8 @@ if not numeros_usuario:
     print("La lista de numeros está vacia.")
 else:
     numeros_usuario = numeros_usuario.strip()                   # Se eliminan los espacios en blanco al inicio y al final de la cadena
-    val_numeros = numeros_usuario.split(",")                    # convierte el input en una lista
-    if all(numero.strip().isdigit() for numero in val_numeros): # Valida que son números
+    val_numeros = [x.strip() for x in numeros_usuario.split(",")] # convierte el input en una lista eliminando los espacios
+    if all(numero.isdigit() for numero in val_numeros): # Valida que son números
         numeros = map(int, numeros_usuario.split(","))          # Transforma el input en una lista que separa por la coma
         dobles = list(map(lambda x: x * 2, numeros))            # itera y los duplica
 
@@ -1061,35 +1061,29 @@ except ValueError as e:
 # -----------------------------------------------------
 # 33. Crea una función lambda que sume elementos correspondientes de dos listas dadas.
 
-def agregar_elementos(lista=None, entrada=None):
-    # Convierte la entrada en una lista, eliminando espacios
-    elementos = [item.strip() for item in entrada.split(",")]
-    return lista + elementos  # Devuelve una nueva lista combinada
+# 33. Crea una función lambda que sume elementos correspondientes de dos listas dadas.
 
 try:
     # Entradas del usuario
-    entrada_frutas = input("Introduzca las frutas que desea añadir a la lista separadas por comas: ").strip()
-    entrada_verduras = input("Introduzca las verduras que desea añadir a la lista separadas por comas: ").strip()
-    if not entrada_frutas and not entrada_verduras:
-        raise ValueError("No se ingresaron frutas ni verduras.")
-    if not entrada_frutas:
-        raise ValueError("No se ingresaron frutas.")
-    if not entrada_verduras:
-        raise ValueError("No se ingresaron verduras.")
-    
-    # Listas originales
-    frutas = ["mango", "plátano", "fresa"]
-    verduras = ["cebolla", "ajo", "peregil"]
+    lista1 = input("Introduzca la primera lista de valores separados por comas: ").strip()
+    lista2 = input("Introduzca la segunda lista de valores separados por comas: ").strip()
+    # veificar que no estén vacías
+    if not lista1 or not lista2:
+        raise ValueError("Las listas no pueden estar vacías.")
+    # Convertir las entradas en listas
+    lista1 = [int(x.strip()) for x in lista1.split(",")] 
+    lista2 = [int(x.strip()) for x in lista2.split(",")] 
+    # Lambda que suma elementos correspondientes de dos listas
+    # Lambda que suma elementos correspondientes de dos listas
+    sumar_listas = lambda l1, l2: list(map(lambda a, b: a + b, l1, l2))
 
-    # Aplicar la función
-    nuevas_frutas = agregar_elementos(frutas, entrada_frutas)
-    nuevas_verduras = agregar_elementos(verduras, entrada_verduras)
+    # Llamar a la función lambda
+    resultado = sumar_listas(lista1, lista2)
+    print(f"Suma elemento a elemento: {resultado}")
 
-    # Imprimir resultados
-    print(f"La lista de frutas es: {nuevas_frutas}")
-    print(f"La lista de verduras es: {nuevas_verduras}")
+
 except ValueError as e:
-    print("Error: Asegúrate de introducir solo cadenas de texto válidas separadas por comas. ", e)
+    print("Error: Asegúrate de introducir solo numeros separados por comas. ", e)
 
 #34. Crea la clase Arbol , define un árbol genérico con un tronco y ramas como atributos. Los métodos disponibles son:
 # crecer tronco , nueva rama , crecer ramas , quitar rama e info arbol . El objetivo es implementar estos métodos para
