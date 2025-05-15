@@ -2,7 +2,11 @@
 # carácter '#', excepto los últimos cuatro.
 
 # función para enmascarar texto
-def transformar(variable):
+def transformar(variable=""):
+    """
+    Enmascara todos los caracteres de la variable con '#' excepto los últimos cuatro.
+    Parámetro por defecto: variable=""
+    """
     longitud = len(variable)
     if longitud <= 4:
         return None # No hay nada que enmascarar
@@ -11,11 +15,20 @@ def transformar(variable):
 
 
 # entrada de la variable 
-entrada = input("Introduce un valor o caracteres que quieras enmascarar con #: ")
+try:
+    entrada = input("Introduce un valor o caracteres que quieras enmascarar con #: ").strip()
 
-#Vusualización y llamada a la función
-resultado = transformar(entrada)
-if resultado is None:
-    print("No hay caracteres que enmascarar, la variable tiene una longitud menor de 4")
-else:
-    print("Se presentan los caracteres enmascarados con '#' a excepción de los cuatro últimos: ", resultado)
+    entrada = str(entrada)
+    # Se verifica que la cadena no esté vacía
+    if not entrada:
+        raise ValueError("La variable está vacia")          
+
+    #Visualización y llamada a la función
+    resultado = transformar(entrada)
+    if resultado is None:
+        print("No hay caracteres que enmascarar, la variable tiene una longitud menor de 4")
+    else:
+        print("Se presentan los caracteres enmascarados con '#' a excepción de los cuatro últimos: ", resultado)
+except ValueError as e:
+    print(f"Error: {e}")
+

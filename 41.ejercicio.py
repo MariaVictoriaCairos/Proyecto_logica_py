@@ -12,10 +12,25 @@
 
 try:
     #introduce el precio como variable numerica con decimales
-    precio = float(input("Introduzca el precio del artículo: ").replace(',', '.'))
-
+    entrada = input("Introduzca el precio del artículo: ").strip()
+    # Se verifica que la cadena no esté vacía
+    if not entrada:
+        raise ValueError("El precio no puede estar vacío.")
+    # Se verifica que el precio sea un número
+    if not entrada.replace('.', '', 1).isdigit():
+        raise ValueError("El precio debe ser un número válido.")
+    # Se transforma la entrada en un número
+    # Se reemplaza la coma por un punto para convertir a float
+    if ',' in entrada:
+        entrada = entrada.replace(',', '.')
+    # Se transforma la entrada en un número
+    precio = float(entrada.replace(',', '.'))
     # introduce si tiene un cupón y se guarda en una variable booleana
     respuesta = input("¿Tiene cupón de descuento? indique si o no :").strip().lower()
+    # Se verifica que la cadena no esté vacía
+    if not respuesta:
+        raise ValueError("La respuesta no puede estar vacía.")
+    # Se verifica que la respuesta sea válida   
     if respuesta not in ["si", "no"]:
         raise ValueError("Debes responder al cupón con 'si' o 'no'")
     Cupon = respuesta == "si"
@@ -23,7 +38,15 @@ try:
     # Solicitud del valor del cupón
     valor_cupon=0
     if Cupon:
-        valor_cupon= float(input("Introduce el valor del cupón : ").replace(',', '.'))
+        entrada= input("Introduce el valor del cupón : ").strip()
+        # Se verifica que la cadena no esté vacía
+        if not entrada:
+            raise ValueError("El valor del cupón no puede estar vacío.")
+        # Se verifica que el valor del cupón sea un número
+        if not entrada.replace('.', '', 1).isdigit():
+            raise ValueError("El valor del cupón debe ser un número válido.")
+        # Se transforma la entrada en un número
+        valor_cupon= float(entrada.replace(',', '.')).s
         # el valor no puede ser negativo
         if valor_cupon < 0:
             raise ValueError("El valor del cupón no puede ser negativo.")

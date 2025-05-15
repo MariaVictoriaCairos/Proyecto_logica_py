@@ -1,24 +1,47 @@
 # 4. Genera una función que calcule la diferencia entre los valores de dos listas. Usa la función map()
 
-def diferencia_listas(lista1, lista2):
-    return list(map(lambda a_b: a_b[0] - a_b[1], zip(lista1, lista2)))
+def diferencia_listas(lista1=None, lista2=None):
+    """
+    Devuelve una lista con la diferencia elemento a elemento de lista1 menos lista2.
+    Parámetros por defecto:
+      - lista1: [] (lista vacía)
+      - lista2: [] (lista vacía)
+    """
+    if lista1 is None:
+        lista1 = []
+    if lista2 is None:
+        lista2 = []
+
+    # Normalizar y convertir con map + lambda
+    try:
+        nums1 = list(map(lambda x: int(str(x).strip()), lista1))
+        nums2 = list(map(lambda x: int(str(x).strip()), lista2))
+    except ValueError:
+        raise ValueError("Todos los elementos deben ser números enteros.")
+
+    # Verificar mismo tamaño
+    if len(nums1) != len(nums2):
+        raise ValueError("Las listas deben tener el mismo tamaño.")
+
+    # Calcular diferencias usando map + lambda
+    return list(map(lambda par: par[0] - par[1], zip(nums1, nums2)))
 
 
-print("Para calcular la diferencia debes introducir ambas listas del mismo tamaño")
-Numeros_1 = input("Introduce la primera lista de numeros separados por una coma: ")
-Lista_1 = Numeros_1.split(",")                    # convierte el input en una lista
-Numeros_2 = input("Introduce la segunda lista de numeros separados por una coma: ")
-Lista_2 = Numeros_2.split(",")                    # convierte el input en una lista
+# --- Uso interactivo ---
+print("Para calcular la diferencia, introduce ambas listas del mismo tamaño.")
 
-if all(numero_1.strip().isdigit() for numero_1 in Lista_1) and all(numero_2.strip().isdigit() for numero_2 in Lista_2):
-    if len(Lista_1) == len(Lista_2):    
-        
-        Lista_1 = list(map(int, map(str.strip, Lista_1)))       # Convertir los elementos de la lista a enteros
-        Lista_2 = list(map(int, map(str.strip, Lista_2)))
-        
-        Calculo= diferencia_listas(Lista_1,Lista_2)
-        print(f"La diferencia entre las dos listas es: {Calculo}")
-    else:
-        print("las listas deben tener el mismo tamaño")
+# strip() en la entrada del usuario
+entrada1 = input("Introduce la primera lista de números separados por coma: ").strip()
+entrada2 = input("Introduce la segunda lista de números separados por coma: ").strip()
+
+if not entrada1 or not entrada2:
+    print("Error: Debes introducir ambas listas.")
 else:
-    print("error, introdujo caracteres. solo se pueden calcular diferencia de números")
+    lista1 = entrada1.split(",")
+    lista2 = entrada2.split(",")
+
+    try:
+        resultado = diferencia_listas(lista1, lista2)
+        print(f"La diferencia entre las dos listas es: {resultado}")
+    except ValueError as e:
+        print(f"Error: {e}")

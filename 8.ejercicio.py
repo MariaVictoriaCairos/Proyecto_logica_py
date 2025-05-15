@@ -4,21 +4,24 @@
 
 print("Introduce los dos números que quieres dividir:")
 
-entrada_1 = input("Introduce el primer número: ")
-entrada_2 = input("Introduce el segundo número: ")
+# Entrada interactiva con strip()
+entrada_1 = input("Introduce el primer número: ").strip()
+entrada_2 = input("Introduce el segundo número: ").strip()
 
-try:
-    numero_1 = float(entrada_1)
-    numero_2 = float(entrada_2)
-
-    division = numero_1 / numero_2
-    print(f"La división de {numero_1} entre {numero_2} es: {division}")
-
-except ValueError:
-    print("Error: Debes introducir valores numéricos válidos.")
-
-except ZeroDivisionError:
-    print("Error: No se puede dividir entre cero.")
-
+# Comprobar que no sean cadenas vacías
+if not entrada_1 or not entrada_2:
+    print("Error: No se ingresaron números.")
 else:
-    print("División realizada con éxito.")
+    try:
+        # Intentar convertir directamente a float
+        numero_1 = float(entrada_1)
+        numero_2 = float(entrada_2)
+
+        # Intentar la división
+        division = numero_1 / numero_2
+    except ValueError:
+        print("Error: Debes introducir valores numéricos válidos.")
+    except ZeroDivisionError:
+        print("Error: No se puede dividir entre cero.")
+    else:
+        print(f"La división de {numero_1} entre {numero_2} es: {division}")

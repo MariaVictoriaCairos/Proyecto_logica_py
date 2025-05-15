@@ -3,11 +3,11 @@
 # no trabaja aquí.
 
 # Función para buscar el cargo del empleado
-def Buscar_empleado(l_empleados,nombre_buscar):
+def Buscar_empleado(l_empleados=None,nombre_buscar=""):
     # recorre el diccionario
     for nombre, cargo in l_empleados.items():
         # condición 
-        if nombre.upper() == nombre_buscar:
+        if nombre.upper() == nombre_buscar.upper():
             return "El cargo del empleado es : " + cargo
     return "El nombre buscado no es empleado de la empresa"
     
@@ -20,13 +20,19 @@ empleados = {
     "Pedro Martínez": "Diseñador Gráfico",
     "Sofía Herrera": "Especialista en Recursos Humanos"
 }
+try:
+    # Entrada del nombre que esta buscando
+    nombre = input("introduzca el nombre con el primer apellido del empleado que está buscando : ").strip()
+    # Se verifica que la cadena no esté vacía
+    if not nombre:
+        raise ValueError("El nombre no puede estar vacío.")
 
-# Entrada del nombre que esta buscando
-nombre = input("introduzca el nombre con el primer apellido del empleado que está buscand : ").upper()
 
-# llamada a la función para buscar el nombre del empleado y devolver el cargo
-resultado = Buscar_empleado(empleados, nombre)
+    # llamada a la función para buscar el nombre del empleado y devolver el cargo
+    resultado = Buscar_empleado(empleados, nombre)
 
-print(resultado)
-
+    print(resultado)
+except ValueError as e:
+    # error en la entrada de datos
+    print("Error:", e)
 

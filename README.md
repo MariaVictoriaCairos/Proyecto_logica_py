@@ -84,3 +84,9 @@ Se presenta un archivo unificado con todos los ejericios denominado Logica_pytho
 | `split()`              | Divide una cadena en partes, según un separador (por defecto, espacio).                           |
 
 
+## Recomendaciones finales
+Se revisa el código aplicando las recomendaciones finales basadas en:
+- Normalización y validación de entradas (uso de strip() y verificación de tipos).
+- Parámetros por defecto.
+- Claridad en los títulos vs lo implementado.
+- Evitar emojis en mensajes de salida.
