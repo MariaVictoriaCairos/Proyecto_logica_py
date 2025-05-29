@@ -11,7 +11,8 @@ else:
     numeros_usuario = numeros_usuario.strip()                   # Se eliminan los espacios en blanco al inicio y al final de la cadena
     val_numeros = [x.strip() for x in numeros_usuario.split(",")] # convierte el input en una lista eliminando los espacios
     if all(numero.isdigit() for numero in val_numeros): # Valida que son números
-        numeros = map(int, numeros_usuario.split(","))          # Transforma el input en una lista que separa por la coma
+        #numeros = map(int, numeros_usuario.split(","))          # Transforma el input en una lista que separa por la coma
+        numeros = map(int, val_numeros)
         dobles = list(map(lambda x: x * 2, numeros))            # itera y los duplica
 
         print(f"El doble de los números que has introducido son {dobles}") 

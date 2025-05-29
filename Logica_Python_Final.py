@@ -2,6 +2,13 @@
 # Fecha: 21/03/2025
 # Fecha revisión : 14/05/2025
 
+# --------------------------------------
+# Librerias
+# --------------------------------------
+#importar función reduce()
+from functools import reduce 
+
+
 # 1. Escribe una función que reciba una cadena de texto como parámetro y devuelva un diccionario con las frecuencias
 # de cada letra en la cadena. Los espacios no deben ser considerados.
 def contar_frecuencias(cadena):
@@ -43,7 +50,7 @@ else:
     numeros_usuario = numeros_usuario.strip()                   # Se eliminan los espacios en blanco al inicio y al final de la cadena
     val_numeros = [x.strip() for x in numeros_usuario.split(",")] # convierte el input en una lista eliminando los espacios
     if all(numero.isdigit() for numero in val_numeros): # Valida que son números
-        numeros = map(int, numeros_usuario.split(","))          # Transforma el input en una lista que separa por la coma
+        numeros = map(int, val_numeros)         # Transforma el input en una lista
         dobles = list(map(lambda x: x * 2, numeros))            # itera y los duplica
 
         print(f"El doble de los números que has introducido son {dobles}") 
@@ -544,8 +551,6 @@ else:
 # 17. Crea una función que tome una lista de dígitos y devuelva el número correspondiente. Por ejemplo, [5,7,2]
 # corresponde al número quinientos setenta y dos (572). Usa la función reduce()
 
-#importar función reduce()
-from functools import reduce
 
 # función que concatena los números de una lista
 def Genera_numero(lista=None):
@@ -697,8 +702,6 @@ except ValueError:
 
 # 22. Dada una lista numérica, obtén el producto total de los valores de dicha lista.Usa la función reduce()
 
-from functools import reduce
-
 # entrada de los valores por el usuario
 valores_usuario = input("Introduce la lista de numeros separados por una coma: ").strip()
 # Se eliminan los espacios en blanco al inicio y al final de la cadena
@@ -722,8 +725,6 @@ else:
 
 # 23. Concatena una lista de palabras.Usa la función reduce().
 
-#importar función reduce()
-from functools import reduce
 # Lista de palabras
 palabras= ["Mi", "profesión", "favorita", "es", "ingeniería", "en", "informática"]
 # Función de unir palabras
@@ -733,8 +734,6 @@ print(mensaje)
 
 # -----------------------------------------------------
 # 24. Calcula la diferencia total en los valores de una lista. Usa la función reduce().
-
-from functools import reduce
 
 # entrada de los valores por el usuario
 valores_usuario = input("Introduce la lista de numeros separados por una coma: ").strip()
